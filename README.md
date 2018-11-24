@@ -5,7 +5,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.3.
 
-This is a boilerplate for creating MEAN apps and connecting them for CosmosDB on Azure. It is based on John Papa's [tutorial](https://docs.microsoft.com/en-us/azure/cosmos-db/tutorial-develop-mongodb-nodejs) and updated for the latest version of Angular.
+This is a boilerplate for creating MEAN apps and connecting them for CosmosDB on Azure and mLab. It is based on John Papa's [tutorial](https://docs.microsoft.com/en-us/azure/cosmos-db/tutorial-develop-mongodb-nodejs) and updated for the latest version of Angular.
 
 ## How to install
 1. Clone this repository to your system.
@@ -30,7 +30,15 @@ yarn
 ```
 
 ## Configuration
-Open `mean-azure/src/server/env/environment.js` and configure it. All the information you need is found in the Connection String tab.
+### Azure
+Open `mean-azure/src/server/env/environment.js` and configure it. All the information you need is found in the Connection String tab on Azure's portal.
+
+### mLab
+If you are trying to connect to mLab, then you have to change `const mongoUri` in `mean-azure/src/server/mongo.js` to this
+``` javascript
+const mongoUri = `mongodb://${env.accountName}:${env.key}@ds235732.mlab.com:${env.port}/${env.databaseName}`;
+```
+`accountName` is the database user, `key` is the database password, and `databaseName` the database name.
 
 ## How to use
 Simply follow the pattern of the app. You can copy existing files or edit them according to your needs.
