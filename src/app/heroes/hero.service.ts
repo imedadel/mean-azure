@@ -1,0 +1,29 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { Hero } from './hero';
+
+const api = '/api';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class HeroService {
+  constructor(private http: HttpClient) {}
+
+  getHeroes() {
+    return this.http.get<Array<Hero>>(`${api}/heroes`);
+  }
+
+  deleteHero(hero: Hero) {
+    return this.http.delete(`${api}/hero/${hero.uid}`);
+  }
+
+  addHero(hero: Hero) {
+    return this.http.post<Hero>(`${api}/hero/`, hero);
+  }
+
+  updateHero(hero: Hero) {
+    return this.http.put<Hero>(`${api}/hero/${hero.uid}`, hero);
+  }
+}
